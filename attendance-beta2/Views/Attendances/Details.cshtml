@@ -1,0 +1,42 @@
+﻿@model attendance_beta2.Models.Attendance
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Attendance</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Routines.Room)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Routines.Room)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Students.StudentName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Students.StudentName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PunchTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PunchTime)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.AttendanceId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

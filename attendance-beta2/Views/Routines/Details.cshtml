@@ -1,0 +1,82 @@
+﻿@model attendance_beta2.Models.Routine
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Routine</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Courses.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Courses.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Semesters.Level)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Semesters.Level)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Teachers.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Teachers.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Day)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Day)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StartTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StartTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EndTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EndTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Room)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Room)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ClassType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ClassType)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.RoutineId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
