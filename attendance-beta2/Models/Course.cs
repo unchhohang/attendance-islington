@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Data;
 using System.Linq;
 using System.Web;
 
@@ -9,6 +10,21 @@ namespace attendance_beta2.Models
 {
     public class Course
     {
+        List<Course> list = new List<Course>();
+        public List<Course> List(DataTable dt)
+        {
+
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                Course cour = new Course();
+                cour.CourseId = Convert.ToInt32(dt.Rows[i]["CourseId"]);
+                cour.Name = dt.Rows[i]["Name"].ToString();
+                cour.FacultyId = Convert.ToInt32(dt.Rows[i]["FacultyId"]);
+                list.Add(cour);
+            }
+            return list;
+
+        }
         [Key]
         public int CourseId { get; set; }
         [Required]

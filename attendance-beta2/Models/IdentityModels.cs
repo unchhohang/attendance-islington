@@ -165,8 +165,7 @@ namespace attendance_beta2.Models
             {
                 con.Open();
                 cmd.ExecuteNonQuery();
-
-
+                da.Fill(dt);
             }
             finally
             {

@@ -33,10 +33,10 @@ namespace attendance_beta2.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             //Faculty faculty = db.Faculties.Find(id);
-            String sql = "SELECT * from Faculties WHERE = " + id+ ";";
+            String sql = "SELECT * from Faculties WHERE facultyid = " + id;
             db.List(sql);
             var dt = db.List(sql);
-            var model = new Faculty().List(dt);
+            var model = new Faculty().List(dt).FirstOrDefault();
 
             if (model == null)
             {
@@ -79,10 +79,10 @@ namespace attendance_beta2.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             //Faculty faculty = db.Faculties.Find(id);
-            String sql = "SELECT * from Faculties WHERE = " + id;
+            String sql = "SELECT * from Faculties WHERE facultyid = " + id;
             db.List(sql);
             var dt = db.List(sql);
-            var model = new Faculty().List(dt);
+            var model = new Faculty().List(dt).FirstOrDefault();
 
 
             if (model == null)
@@ -103,7 +103,7 @@ namespace attendance_beta2.Controllers
             {
                 //db.Entry(faculty).State = EntityState.Modified;
                 //db.SaveChanges();
-                String sql = "Update Faculties set FacultyId='" + faculty.FacultyId + "', FacultyName='" + faculty.FacultyName + "', Description='" + faculty.Description + "   ' where facultyId = " + faculty.FacultyId;
+                String sql = "Update Faculties set FacultyName='" + faculty.FacultyName + "', Description='" + faculty.Description + "   ' where facultyId = " + faculty.FacultyId;
                 db.Edit(sql);
                 return RedirectToAction("Index");
             }

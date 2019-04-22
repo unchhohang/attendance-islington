@@ -17,8 +17,13 @@ namespace attendance_beta2.Controllers
         // GET: Courses
         public ActionResult Index()
         {
-            var courses = db.Courses.Include(c => c.Faculties);
-            return View(courses.ToList());
+            //var courses = db.Courses.Include(c => c.Faculties);
+            //return View(courses.ToList());
+            String sql = "SELECT * from Courses";
+            db.List(sql);
+            var dt = db.List(sql);
+            var model = new Course().List(dt);
+            return View(model);
         }
 
         // GET: Courses/Details/5

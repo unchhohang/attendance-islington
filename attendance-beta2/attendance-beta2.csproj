@@ -200,6 +200,7 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\ApplicationUserRoles.cs" />
     <Compile Include="Models\Attendance.cs" />
     <Compile Include="Models\Course.cs" />
     <Compile Include="Models\Faculty.cs" />
@@ -327,6 +328,8 @@
     <Content Include="Views\teacher_course\Details.cshtml" />
     <Content Include="Views\teacher_course\Edit.cshtml" />
     <Content Include="Views\teacher_course\Index.cshtml" />
+    <Content Include="Views\AddUserToRole.cshtml" />
+    <Content Include="Views\Manage\AddUserToRole.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

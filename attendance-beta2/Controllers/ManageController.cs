@@ -7,6 +7,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using attendance_beta2.Models;
+using System.Data.Entity;
 
 namespace attendance_beta2.Controllers
 {
@@ -333,7 +334,18 @@ namespace attendance_beta2.Controllers
             base.Dispose(disposing);
         }
 
-#region Helpers
+        public async Task<ActionResult> AddUserToRole()
+        {
+            ApplicationUserRolesViewModel vm = new ApplicationUserRolesViewModel();
+            ApplicationDbContext dbCon = new ApplicationDbContext();
+            var users = await dbCon.Users.ToListAsync();
+            var roles = await dbCon.Roles.ToListAsync();
+            ViewBag.UserId = new SelectList(users, "Id", "UserName");
+            ViewBag.RoleId = new SelectList(roles, "Id", "Name");
+            return View(vm);
+        }
+
+        #region Helpers
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";
 
