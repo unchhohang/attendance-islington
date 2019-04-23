@@ -178,6 +178,8 @@
     <Compile Include="Controllers\FacultiesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\SemestersController.cs" />
+    <Compile Include="Controllers\StaffsController.cs" />
     <Compile Include="Controllers\StudentsController.cs" />
     <Compile Include="Controllers\Student_CourseController.cs" />
     <Compile Include="Global.asax.cs">
@@ -194,6 +196,14 @@
     <Compile Include="Migrations\201904230818478_a1.cs" />
     <Compile Include="Migrations\201904230818478_a1.Designer.cs">
       <DependentUpon>201904230818478_a1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904230926213_a2.cs" />
+    <Compile Include="Migrations\201904230926213_a2.Designer.cs">
+      <DependentUpon>201904230926213_a2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904231005330_a3.cs" />
+    <Compile Include="Migrations\201904231005330_a3.Designer.cs">
+      <DependentUpon>201904231005330_a3.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -303,11 +313,6 @@
     <Content Include="Views\Semester_Routine\Details.cshtml" />
     <Content Include="Views\Semester_Routine\Edit.cshtml" />
     <Content Include="Views\Semester_Routine\Index.cshtml" />
-    <Content Include="Views\Staffs\Create.cshtml" />
-    <Content Include="Views\Staffs\Delete.cshtml" />
-    <Content Include="Views\Staffs\Details.cshtml" />
-    <Content Include="Views\Staffs\Edit.cshtml" />
-    <Content Include="Views\Staffs\Index.cshtml" />
     <Content Include="Views\Students\Create.cshtml" />
     <Content Include="Views\Students\Delete.cshtml" />
     <Content Include="Views\Students\Details.cshtml" />
@@ -335,6 +340,11 @@
     <Content Include="Views\Student_Course1\Details.cshtml" />
     <Content Include="Views\Student_Course1\Edit.cshtml" />
     <Content Include="Views\Student_Course1\Index.cshtml" />
+    <Content Include="Views\Staffs\Create.cshtml" />
+    <Content Include="Views\Staffs\Delete.cshtml" />
+    <Content Include="Views\Staffs\Details.cshtml" />
+    <Content Include="Views\Staffs\Edit.cshtml" />
+    <Content Include="Views\Staffs\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -361,6 +371,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201904230818478_a1.resx">
       <DependentUpon>201904230818478_a1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904230926213_a2.resx">
+      <DependentUpon>201904230926213_a2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904231005330_a3.resx">
+      <DependentUpon>201904231005330_a3.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

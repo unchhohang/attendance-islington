@@ -23,7 +23,7 @@ namespace attendance_beta2.Models
                 std.Email = dt.Rows[i]["Email"].ToString();
                 std.ContactNo = dt.Rows[i]["ContactNo"].ToString();
                 std.address = dt.Rows[i]["address"].ToString();
-                //std.EnrollDate = dt.Rows[i]["EnrollDate"].;
+                std.EnrollDate = DateTime.Parse(dt.Rows[i]["EnrollDate"].ToString());
                 list.Add(std);
             }
             return list;
