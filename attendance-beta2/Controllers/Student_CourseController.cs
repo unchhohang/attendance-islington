@@ -17,8 +17,13 @@ namespace attendance_beta2.Controllers
         // GET: Student_Course
         public ActionResult Index()
         {
-            var student_Course = db.Student_Course.Include(s => s.Courses).Include(s => s.Students);
-            return View(student_Course.ToList());
+            //var student_Course = db.Student_Course.Include(s => s.Courses).Include(s => s.Students);
+            //return View(student_Course.ToList());
+            String sql = "SELECT sc.*, c.Name, s.StudentName FROM Student_Course sc JOIN Courses c ON sc.CourseId = c.CourseId JOIN Students s ON sc.StudentId = s.StudentId";
+            db.List(sql);
+            var dt = db.List(sql);
+            var model = new Student_Course().List(dt);
+            return View(model);
         }
 
         // GET: Student_Course/Details/5
@@ -28,12 +33,16 @@ namespace attendance_beta2.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Student_Course student_Course = db.Student_Course.Find(id);
-            if (student_Course == null)
+            //Student_Course student_Course = db.Student_Course.Find(id);
+            String sql = "SELECT sc.*, c.Name, s.StudentName FROM Student_Course sc JOIN Courses c ON sc.CourseId = c.CourseId JOIN Students s ON sc.StudentId = s.StudentId WHERE sc.StudentCourseId = " + id;
+            db.List(sql);
+            var dt = db.List(sql);
+            var model = new Student_Course().List(dt).FirstOrDefault();
+            if (model == null)
             {
                 return HttpNotFound();
             }
-            return View(student_Course);
+            return View(model);
         }
 
         // GET: Student_Course/Create
@@ -53,8 +62,11 @@ namespace attendance_beta2.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Student_Course.Add(student_Course);
-                db.SaveChanges();
+                //db.Student_Course.Add(student_Course);
+                //db.SaveChanges();
+                string sql = "INSERT INTO Student_Course(CourseId, StudentId) " +
+                    "values( '" + student_Course.CourseId+ "', '" + student_Course.StudentId+ "')";
+                db.Create(sql);
                 return RedirectToAction("Index");
             }
 
@@ -70,14 +82,18 @@ namespace attendance_beta2.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Student_Course student_Course = db.Student_Course.Find(id);
-            if (student_Course == null)
+            //Student_Course model = db.Student_Course.Find(id);
+            String sql = "SELECT sc.*, c.Name, s.StudentName FROM Student_Course sc JOIN Courses c ON sc.CourseId = c.CourseId JOIN Students s ON sc.StudentId = s.StudentId WHERE sc.StudentCourseId = " + id;
+            db.List(sql);
+            var dt = db.List(sql);
+            var model = new Student_Course().List(dt).FirstOrDefault();
+            if (model == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.CourseId = new SelectList(db.Courses, "CourseId", "Name", student_Course.CourseId);
-            ViewBag.StudentId = new SelectList(db.Students, "StudentId", "StudentName", student_Course.StudentId);
-            return View(student_Course);
+            ViewBag.CourseId = new SelectList(db.Courses, "CourseId", "Name", model.CourseId);
+            ViewBag.StudentId = new SelectList(db.Students, "StudentId", "StudentName", model.StudentId);
+            return View(model);
         }
 
         // POST: Student_Course/Edit/5
@@ -91,6 +107,8 @@ namespace attendance_beta2.Controllers
             {
                 db.Entry(student_Course).State = EntityState.Modified;
                 db.SaveChanges();
+                //String sql = "Update Student_Course set CourseId='" + student_Course.CourseId + "', StudentId='" + student_Course.StudentId+ "' where StudentCourseId = " + student_Course.StudentCourseId;
+                //db.Edit(sql);
                 return RedirectToAction("Index");
             }
             ViewBag.CourseId = new SelectList(db.Courses, "CourseId", "Name", student_Course.CourseId);
@@ -105,12 +123,16 @@ namespace attendance_beta2.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Student_Course student_Course = db.Student_Course.Find(id);
-            if (student_Course == null)
+            //Student_Course student_Course = db.Student_Course.Find(id);
+            String sql = "SELECT sc.*, c.Name, s.StudentName FROM Student_Course sc JOIN Courses c ON sc.CourseId = c.CourseId JOIN Students s ON sc.StudentId = s.StudentId WHERE sc.StudentCourseId = " + id;
+            db.List(sql);
+            var dt = db.List(sql);
+            var model = new Student_Course().List(dt).FirstOrDefault();
+            if (model == null)
             {
                 return HttpNotFound();
             }
-            return View(student_Course);
+            return View(model);
         }
 
         // POST: Student_Course/Delete/5
@@ -118,9 +140,11 @@ namespace attendance_beta2.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Student_Course student_Course = db.Student_Course.Find(id);
-            db.Student_Course.Remove(student_Course);
-            db.SaveChanges();
+            //Student_Course student_Course = db.Student_Course.Find(id);
+            //db.Student_Course.Remove(student_Course);
+            //db.SaveChanges();
+            String sql = "DELETE FROM Student_Course where StudentCourseId = " + id;
+            db.Delete(sql);
             return RedirectToAction("Index");
         }
 

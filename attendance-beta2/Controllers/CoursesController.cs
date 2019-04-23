@@ -19,7 +19,7 @@ namespace attendance_beta2.Controllers
         {
             //var courses = db.Courses.Include(c => c.Faculties);
             //return View(courses.ToList());
-            String sql = "SELECT * from Courses";
+            string sql = "SELECT c.*, f.FacultyName AS FacultyName FROM courses c JOIN Faculties f ON c.FacultyId = f.FacultyId;";
             db.List(sql);
             var dt = db.List(sql);
             var model = new Course().List(dt);
@@ -33,12 +33,16 @@ namespace attendance_beta2.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Course course = db.Courses.Find(id);
-            if (course == null)
+            //Course course = db.Courses.Find(id);
+            String sql = "SELECT c.*, f.FacultyName AS FacultyName FROM courses c JOIN Faculties f ON c.FacultyId = f.FacultyId WHERE courseId= " + id;
+            db.List(sql);
+            var dt = db.List(sql);
+            var model = new Course().List(dt).FirstOrDefault();
+            if (model == null)
             {
                 return HttpNotFound();
             }
-            return View(course);
+            return View(model);
         }
 
         // GET: Courses/Create
@@ -57,8 +61,11 @@ namespace attendance_beta2.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Courses.Add(course);
-                db.SaveChanges();
+                //db.Courses.Add(course);
+                //db.SaveChanges();
+                string sql = "INSERT INTO Courses(Name, FacultyId) " +
+                    "values( '" + course.Name + "', '" + course.FacultyId + "')";
+                db.Create(sql);
                 return RedirectToAction("Index");
             }
 
@@ -73,13 +80,18 @@ namespace attendance_beta2.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Course course = db.Courses.Find(id);
-            if (course == null)
+            //Course course = db.Courses.Find(id);
+            String sql = "SELECT c.*, f.FacultyName AS FacultyName FROM courses c JOIN Faculties f ON c.FacultyId = f.FacultyId WHERE courseId= " + id;
+            db.List(sql);
+            var dt = db.List(sql);
+            var model = new Course().List(dt).FirstOrDefault();
+
+            if (model == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.FacultyId = new SelectList(db.Faculties, "FacultyId", "FacultyName", course.FacultyId);
-            return View(course);
+            ViewBag.FacultyId = new SelectList(db.Faculties, "FacultyId", "FacultyName", model.FacultyId);
+            return View(model);
         }
 
         // POST: Courses/Edit/5
@@ -91,8 +103,10 @@ namespace attendance_beta2.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(course).State = EntityState.Modified;
-                db.SaveChanges();
+                //db.Entry(course).State = EntityState.Modified;
+                //db.SaveChanges();
+                String sql = "Update Courses set Name='" + course.Name+ "' where courseId = " + course.CourseId;
+                db.Edit(sql);
                 return RedirectToAction("Index");
             }
             ViewBag.FacultyId = new SelectList(db.Faculties, "FacultyId", "FacultyName", course.FacultyId);
@@ -106,12 +120,17 @@ namespace attendance_beta2.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Course course = db.Courses.Find(id);
-            if (course == null)
+            //Course course = db.Courses.Find(id);
+            String sql = "SELECT c.*, f.FacultyName AS FacultyName FROM courses c JOIN Faculties f ON c.FacultyId = f.FacultyId WHERE courseId= " + id;
+            db.List(sql);
+            var dt = db.List(sql);
+            var model = new Course().List(dt).FirstOrDefault();
+
+            if (model == null)
             {
                 return HttpNotFound();
             }
-            return View(course);
+            return View(model);
         }
 
         // POST: Courses/Delete/5
@@ -119,9 +138,11 @@ namespace attendance_beta2.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Course course = db.Courses.Find(id);
-            db.Courses.Remove(course);
-            db.SaveChanges();
+            //Course course = db.Courses.Find(id);
+            //db.Courses.Remove(course);
+            //db.SaveChanges();
+            String sql = "DELETE FROM courses where courseid = " + id;
+            db.Delete(sql);
             return RedirectToAction("Index");
         }
 

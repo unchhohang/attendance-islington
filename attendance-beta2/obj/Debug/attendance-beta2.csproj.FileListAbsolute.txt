@@ -102,10 +102,12 @@ C:\Users\Unchhohang\source\repos\attendance-beta2\attendance-beta2\bin\Microsoft
 C:\Users\Unchhohang\source\repos\attendance-beta2\attendance-beta2\bin\System.Diagnostics.DiagnosticSource.xml
 C:\Users\Unchhohang\source\repos\attendance-beta2\attendance-beta2\bin\Microsoft.AspNet.TelemetryCorrelation.xml
 C:\Users\Unchhohang\source\repos\attendance-beta2\attendance-beta2\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Users\Unchhohang\source\repos\attendance-beta2\attendance-beta2\obj\Debug\attendance_beta2.Migrations._default.resources
-C:\Users\Unchhohang\source\repos\attendance-beta2\attendance-beta2\obj\Debug\attendance_beta2.Migrations.a.resources
-C:\Users\Unchhohang\source\repos\attendance-beta2\attendance-beta2\obj\Debug\attendance-beta2.csproj.GenerateResource.cache
 C:\Users\Unchhohang\source\repos\attendance-beta2\attendance-beta2\obj\Debug\attendance-beta2.csproj.CoreCompileInputs.cache
 C:\Users\Unchhohang\source\repos\attendance-beta2\attendance-beta2\obj\Debug\attendance-beta2.csproj.CopyComplete
 C:\Users\Unchhohang\source\repos\attendance-beta2\attendance-beta2\obj\Debug\attendance-beta2.dll
 C:\Users\Unchhohang\source\repos\attendance-beta2\attendance-beta2\obj\Debug\attendance-beta2.pdb
+C:\Users\Unchhohang\source\repos\attendance-beta2\attendance-beta2\obj\Debug\attendance_beta2.Migrations.def.resources
+C:\Users\Unchhohang\source\repos\attendance-beta2\attendance-beta2\obj\Debug\attendance-beta2.csproj.GenerateResource.cache
+C:\Users\Unchhohang\source\repos\attendance-beta2\attendance-beta2\obj\Debug\attendance_beta2.Migrations.a.resources
+C:\Users\Unchhohang\source\repos\attendance-beta2\attendance-beta2\obj\Debug\attendance-beta2.csprojAssemblyReference.cache
+C:\Users\Unchhohang\source\repos\attendance-beta2\attendance-beta2\obj\Debug\attendance_beta2.Migrations.a1.resources

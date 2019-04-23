@@ -117,12 +117,16 @@ namespace attendance_beta2.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Faculty faculty = db.Faculties.Find(id);
-            if (faculty == null)
+            //Faculty faculty = db.Faculties.Find(id);
+            String sql = "SELECT * from Faculties WHERE facultyid = " + id;
+            db.List(sql);
+            var dt = db.List(sql);
+            var model = new Faculty().List(dt).FirstOrDefault();
+            if (model == null)
             {
                 return HttpNotFound();
             }
-            return View(faculty);
+            return View(model);
         }
 
         // POST: Faculties/Delete/5

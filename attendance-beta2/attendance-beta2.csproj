@@ -174,29 +174,26 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\AttendancesController.cs" />
     <Compile Include="Controllers\CoursesController.cs" />
     <Compile Include="Controllers\FacultiesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\RoutinesController.cs" />
-    <Compile Include="Controllers\Routine_StudentController.cs" />
-    <Compile Include="Controllers\SemestersController.cs" />
-    <Compile Include="Controllers\Semester_RoutineController.cs" />
-    <Compile Include="Controllers\StaffsController.cs" />
     <Compile Include="Controllers\StudentsController.cs" />
     <Compile Include="Controllers\Student_CourseController.cs" />
-    <Compile Include="Controllers\teacher_courseController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201904210947100_default.cs" />
-    <Compile Include="Migrations\201904210947100_default.Designer.cs">
-      <DependentUpon>201904210947100_default.cs</DependentUpon>
+    <Compile Include="Migrations\201904230410337_def.cs" />
+    <Compile Include="Migrations\201904230410337_def.Designer.cs">
+      <DependentUpon>201904230410337_def.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201904211439598_a.cs" />
-    <Compile Include="Migrations\201904211439598_a.Designer.cs">
-      <DependentUpon>201904211439598_a.cs</DependentUpon>
+    <Compile Include="Migrations\201904230413013_a.cs" />
+    <Compile Include="Migrations\201904230413013_a.Designer.cs">
+      <DependentUpon>201904230413013_a.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904230818478_a1.cs" />
+    <Compile Include="Migrations\201904230818478_a1.Designer.cs">
+      <DependentUpon>201904230818478_a1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -207,9 +204,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Routine.cs" />
-    <Compile Include="Models\Routine_Student.cs" />
     <Compile Include="Models\Semester.cs" />
-    <Compile Include="Models\Semester_Routine.cs" />
     <Compile Include="Models\Staff.cs" />
     <Compile Include="Models\Student.cs" />
     <Compile Include="Models\Student_Course.cs" />
@@ -330,6 +325,16 @@
     <Content Include="Views\teacher_course\Index.cshtml" />
     <Content Include="Views\AddUserToRole.cshtml" />
     <Content Include="Views\Manage\AddUserToRole.cshtml" />
+    <Content Include="Views\Students1\Create.cshtml" />
+    <Content Include="Views\Students1\Delete.cshtml" />
+    <Content Include="Views\Students1\Details.cshtml" />
+    <Content Include="Views\Students1\Edit.cshtml" />
+    <Content Include="Views\Students1\Index.cshtml" />
+    <Content Include="Views\Student_Course1\Create.cshtml" />
+    <Content Include="Views\Student_Course1\Delete.cshtml" />
+    <Content Include="Views\Student_Course1\Details.cshtml" />
+    <Content Include="Views\Student_Course1\Edit.cshtml" />
+    <Content Include="Views\Student_Course1\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -348,11 +353,14 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201904210947100_default.resx">
-      <DependentUpon>201904210947100_default.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201904230410337_def.resx">
+      <DependentUpon>201904230410337_def.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201904211439598_a.resx">
-      <DependentUpon>201904211439598_a.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201904230413013_a.resx">
+      <DependentUpon>201904230413013_a.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904230818478_a1.resx">
+      <DependentUpon>201904230818478_a1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

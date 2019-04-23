@@ -17,9 +17,11 @@ namespace attendance_beta2.Models
             for (int i = 0; i < dt.Rows.Count; i++)
             {
                 Course cour = new Course();
-                cour.CourseId = Convert.ToInt32(dt.Rows[i]["CourseId"]);
+                cour.CourseId = Convert.ToInt32(dt.Rows[i]["courseId"]);
                 cour.Name = dt.Rows[i]["Name"].ToString();
-                cour.FacultyId = Convert.ToInt32(dt.Rows[i]["FacultyId"]);
+                cour.FacultyId = Convert.ToInt32(dt.Rows[i][FacultyId]);
+                cour.FacultyName = dt.Rows[i]["FacultyName"].ToString();
+                
                 list.Add(cour);
             }
             return list;
@@ -35,5 +37,7 @@ namespace attendance_beta2.Models
 
        [ForeignKey("FacultyId")]
        public virtual Faculty Faculties { get; set; }
+       [NotMapped]
+       public string FacultyName { get; set; }
     }
 }

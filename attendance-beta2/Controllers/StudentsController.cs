@@ -17,8 +17,12 @@ namespace attendance_beta2.Controllers
         // GET: Students
         public ActionResult Index()
         {
-            var students = db.Students.Include(s => s.Faculties);
-            return View(students.ToList());
+            //return View(db.Students.ToList());
+            String sql = "SELECT * from Students";
+            db.List(sql);
+            var dt = db.List(sql);
+            var model = new Student().List(dt);
+            return View(model);
         }
 
         // GET: Students/Details/5
@@ -28,18 +32,21 @@ namespace attendance_beta2.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Student student = db.Students.Find(id);
-            if (student == null)
+            //Student student = db.Students.Find(id);
+            String sql = "SELECT * from Students WHERE studentId = " + id;
+            db.List(sql);
+            var dt = db.List(sql);
+            var model = new Student().List(dt).FirstOrDefault();
+            if (model == null)
             {
                 return HttpNotFound();
             }
-            return View(student);
+            return View(model);
         }
 
         // GET: Students/Create
         public ActionResult Create()
         {
-            ViewBag.FacultyId = new SelectList(db.Faculties, "FacultyId", "FacultyName");
             return View();
         }
 
@@ -48,16 +55,19 @@ namespace attendance_beta2.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "StudentId,StudentName,Email,ContactNo,address,EnrollDate,FacultyId")] Student student)
+        public ActionResult Create([Bind(Include = "StudentId,StudentName,Email,ContactNo,address,EnrollDate")] Student student)
         {
             if (ModelState.IsValid)
             {
-                db.Students.Add(student);
-                db.SaveChanges();
+                //db.Students.Add(student);
+                //db.SaveChanges();
+                student.EnrollDate = DateTime.Now.ToUniversalTime();
+                String sql = "INSERT INTO Students(StudentName, Email, contactNo, address, EnrollDate) " +
+                    "values('" + student.StudentName+ "','" + student.Email + "','" + student.ContactNo+ "','" + student.address + "', '" + student.EnrollDate + "')";
+                db.Create(sql);
                 return RedirectToAction("Index");
             }
 
-            ViewBag.FacultyId = new SelectList(db.Faculties, "FacultyId", "FacultyName", student.FacultyId);
             return View(student);
         }
 
@@ -68,13 +78,16 @@ namespace attendance_beta2.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Student student = db.Students.Find(id);
-            if (student == null)
+            //Student student = db.Students.Find(id);
+            String sql = "SELECT * from Students WHERE studentId = " + id;
+            db.List(sql);
+            var dt = db.List(sql);
+            var model = new Student().List(dt).FirstOrDefault();
+            if (model == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.FacultyId = new SelectList(db.Faculties, "FacultyId", "FacultyName", student.FacultyId);
-            return View(student);
+            return View(model);
         }
 
         // POST: Students/Edit/5
@@ -82,15 +95,17 @@ namespace attendance_beta2.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "StudentId,StudentName,Email,ContactNo,address,EnrollDate,FacultyId")] Student student)
+        public ActionResult Edit([Bind(Include = "StudentId,StudentName,Email,ContactNo,address,EnrollDate")] Student student)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(student).State = EntityState.Modified;
-                db.SaveChanges();
+                //db.Entry(student).State = EntityState.Modified;
+                //db.SaveChanges();
+                String sql = "Update Students set StudentName='" + student.StudentName + "', Email='" + student.Email + "', ContactNo='" + student.ContactNo + "', address='" + student.address + "' " +
+                    "WHERE StudentId = " + student.StudentId;
+                db.Edit(sql);
                 return RedirectToAction("Index");
             }
-            ViewBag.FacultyId = new SelectList(db.Faculties, "FacultyId", "FacultyName", student.FacultyId);
             return View(student);
         }
 
@@ -101,12 +116,16 @@ namespace attendance_beta2.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Student student = db.Students.Find(id);
-            if (student == null)
+            //Student student = db.Students.Find(id);
+            String sql = "SELECT * from Students WHERE studentId = " + id;
+            db.List(sql);
+            var dt = db.List(sql);
+            var model = new Student().List(dt).FirstOrDefault();
+            if (model == null)
             {
                 return HttpNotFound();
             }
-            return View(student);
+            return View(model);
         }
 
         // POST: Students/Delete/5
@@ -114,9 +133,11 @@ namespace attendance_beta2.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Student student = db.Students.Find(id);
-            db.Students.Remove(student);
-            db.SaveChanges();
+            //Student student = db.Students.Find(id);
+            //db.Students.Remove(student);
+            //db.SaveChanges();
+            String sql = "DELETE FROM Students where studentId = " + id;
+            db.Delete(sql);
             return RedirectToAction("Index");
         }
 

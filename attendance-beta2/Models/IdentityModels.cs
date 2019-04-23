@@ -18,9 +18,9 @@ namespace attendance_beta2.Models
         public DbSet<Attendance> Attendances { get; set; }
         public DbSet<Course> Courses { get; set; }
         public DbSet<Routine> Routines { get; set; }
-        public DbSet<Routine_Student> Routine_Students { get; set; } 
-        public DbSet<Semester> semesters { get; set; }
-        public DbSet<Semester_Routine> Semester_Routines { get; set; }
+        
+        public DbSet<Semester> Semesters { get; set; }
+        
         public DbSet<Staff> Staffs { get; set; }
         public DbSet<Student_Course> Student_Courses { get; set; }
         public DbSet<teacher_course> Teacher_Courses { get; set; }
@@ -59,11 +59,7 @@ namespace attendance_beta2.Models
         public System.Data.Entity.DbSet<attendance_beta2.Models.Semester> Semesters { get; set; }
 
         public System.Data.Entity.DbSet<attendance_beta2.Models.Staff> Staffs { get; set; }
-
-        public System.Data.Entity.DbSet<attendance_beta2.Models.Routine_Student> Routine_Student { get; set; }
-
-        public System.Data.Entity.DbSet<attendance_beta2.Models.Semester_Routine> Semester_Routine { get; set; }
-
+        
         public System.Data.Entity.DbSet<attendance_beta2.Models.Student_Course> Student_Course { get; set; }
 
         public System.Data.Entity.DbSet<attendance_beta2.Models.teacher_course> teacher_course { get; set; }

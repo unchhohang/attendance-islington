@@ -20,8 +20,6 @@ namespace attendance_beta2.Models
         public string Email { get; set; }
         
         public int Type { get; set; }
-        [Required]
-        public string Password { get; set; }
 
     }
 }
