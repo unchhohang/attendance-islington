@@ -23,7 +23,7 @@ namespace attendance_beta2.Models
         
         public DbSet<Staff> Staffs { get; set; }
         public DbSet<Student_Course> Student_Courses { get; set; }
-        public DbSet<teacher_course> Teacher_Courses { get; set; }
+        
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
@@ -62,7 +62,7 @@ namespace attendance_beta2.Models
         
         public System.Data.Entity.DbSet<attendance_beta2.Models.Student_Course> Student_Course { get; set; }
 
-        public System.Data.Entity.DbSet<attendance_beta2.Models.teacher_course> teacher_course { get; set; }
+        
 
         public void Create(string sql)
         {
