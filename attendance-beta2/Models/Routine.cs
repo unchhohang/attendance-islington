@@ -22,14 +22,24 @@ namespace attendance_beta2.Models
                 r.CourseId = Convert.ToInt32(dt.Rows[i]["CourseId"]);
                 r.Day = ((DayOfWeek)(dt.Rows[i]["Day"]));
                 r.StartTime = DateTime.Parse(dt.Rows[i]["StartTime"].ToString());
-                r.EndTime= DateTime.Parse(dt.Rows[i]["EndTime"].ToString());
+                r.EndTime = DateTime.Parse(dt.Rows[i]["EndTime"].ToString());
                 r.Room = dt.Rows[i]["Room"].ToString();
                 r.ClassType = dt.Rows[i]["ClassType"].ToString();
                 r.TeacherId = Convert.ToInt32(dt.Rows[i]["TeacherId"].ToString());
                 r.SemesterId = Convert.ToInt32(dt.Rows[i]["SemesterId"].ToString());
-                r.CourseName = dt.Rows[i]["CourseName"].ToString();
-                r.TeacherName = dt.Rows[i]["TeacherName"].ToString();
-                r.SemesterLevel = dt.Rows[i]["SemesterLevel"].ToString();   
+                if (dt.Columns.Contains("CourseName"))
+                {
+                    r.CourseName = dt.Rows[i]["CourseName"].ToString();
+                }
+                if (dt.Columns.Contains("TeacherName"))
+                {
+                    r.TeacherName = dt.Rows[i]["TeacherName"].ToString();
+                }
+                if (dt.Columns.Contains("SemesterLevel"))
+                {
+                    r.SemesterLevel = dt.Rows[i]["SemesterLevel"].ToString();
+
+                }
                 list.Add(r);
             }
             return list;
@@ -68,8 +78,10 @@ namespace attendance_beta2.Models
         public string TeacherName { get; set; }
         [NotMapped]
         public string SemesterLevel { get; set; }
+        [NotMapped]
+        public string DayName { get; set; }
 
 
-        
+
     }
 }

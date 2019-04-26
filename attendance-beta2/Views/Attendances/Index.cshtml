@@ -1,45 +1,73 @@
-﻿@model IEnumerable<attendance_beta2.Models.Attendance>
+﻿@using attendance_beta2.Models
+@model List<attendance_beta2.Models.Attendance>
 
 @{
+    /**/
+
     ViewBag.Title = "Index";
 }
 
 <h2>Index</h2>
+@using (Html.BeginForm("Show", "Attendances", FormMethod.Post,
+        new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="form-group">
+        <div class="col-md-4">
+            @Html.DropDownList("CourseId", null, htmlAttributes: new { @class = "form-control", onchange = @"form.submit();" })
+        </div>
+        <div class="col-md-4">
+            @Html.DropDownList("StaffId", null, htmlAttributes: new { @class = "form-control", onchange = @"form.submit();", Name = "TeacherId" })
+        </div>
+        <div class="col-md-4">
+            @Html.DropDownList("SemesterId", null, htmlAttributes: new { @class = "form-control" })
+        </div>
+        <div class="col-md-offset-2 col-md-2">
+            <input type="submit" value="Show" class="btn btn-defult" />
+        </div>
 
+    </div>
+}
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Routines.Room)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Students.StudentName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PunchTime)
-        </th>
-        <th></th>
-    </tr>
+@using (Html.BeginForm("Create", "Attendances", FormMethod.Post,
+        new { enctype = "multipart/form-data" }))
+{
+    <input type="hidden" name="[0].RoutineId" value="@ViewBag.RoutineId" />
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().StudentName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().StudentName)
+            </th>
+            <th></th>
+        </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Routines.Room)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Students.StudentName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PunchTime)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.AttendanceId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.AttendanceId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.AttendanceId })
-        </td>
-    </tr>
-}
+        @for (int i = 0; i < Model.Count(); i++)
+        {
+            <tr>
+                <td>
+                    @Html.HiddenFor(x => Model[i].StudentId)
+                    @Html.DisplayFor(modelItem => Model[i].StudentName)
+                </td>
+                <td>
+                    @Html.DropDownList("["+i+"].Attended            ",
+                    new SelectList(Enum.GetValues(typeof(Status))),
+                    "Select Status",
+                    new { @class = "form-control" })
+                    @*      @Html.DropDownList("StaffId", null, htmlAttributes: new { @class = "form-control" })*@
+                </td>
+                @*<td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.AttendanceId }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.AttendanceId }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.AttendanceId })
+                    </td>*@
+            </tr>
+        }
 
-</table>
+    </table>
+    <input type="submit" value="Submit Attendance" />
+})

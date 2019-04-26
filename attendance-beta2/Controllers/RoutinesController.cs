@@ -36,12 +36,17 @@ namespace attendance_beta2.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Routine routine = db.Routines.Find(id);
-            if (routine == null)
+            //Routine routine = db.Routines.Find(id);
+            String sql = "SELECT R.*, C.Name AS CourseName, T.Name AS TeacherName, SE.Level AS SemesterLevel FROM Routines R JOIN Courses C ON R.CourseId = C.CourseId JOIN Staffs T ON R.TeacherId = T.StaffId JOIN Semesters SE ON R.SemesterId = SE.SemesterId" +
+                " WHERE RoutineId = " + id;
+            db.List(sql);
+            var dt = db.List(sql);
+            var model = new Routine().List(dt).FirstOrDefault();
+            if (model== null)
             {
                 return HttpNotFound();
             }
-            return View(routine);
+            return View(model);
         }
 
         // GET: Routines/Create
@@ -62,8 +67,12 @@ namespace attendance_beta2.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Routines.Add(routine);
-                db.SaveChanges();
+                //db.Routines.Add(routine);
+                //db.SaveChanges();
+                
+                string sql = "INSERT INTO Routines(CourseId, Day, StartTime, EndTime, Room, ClassType, TeacherId, SemesterId) " +
+                    "values( '" + routine.CourseId + "', '" + routine.DayName+ "', '" + routine.StartTime + "', '" + routine.EndTime + "', '" + routine.Room + "', '" + routine.ClassType + "', '" + routine.TeacherId + "', '" + routine.SemesterId + "')";
+                db.Create(sql);
                 return RedirectToAction("Index");
             }
 
@@ -80,15 +89,19 @@ namespace attendance_beta2.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Routine routine = db.Routines.Find(id);
-            if (routine == null)
+            //Routine routine = db.Routines.Find(id);
+            String sql = "SELECT R.*, C.Name AS CourseName, T.Name AS TeacherName, SE.Level AS SemesterLevel FROM Routines R JOIN Courses C ON R.CourseId = C.CourseId JOIN Staffs T ON R.TeacherId = T.StaffId JOIN Semesters SE ON R.SemesterId = SE.SemesterId WHERE RoutineId = " + id;
+            db.List(sql);
+            var dt = db.List(sql);
+            var model = new Routine().List(dt).FirstOrDefault();
+            if (model == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.CourseId = new SelectList(db.Courses, "CourseId", "Name", routine.CourseId);
-            ViewBag.SemesterId = new SelectList(db.Semesters, "SemesterId", "Year", routine.SemesterId);
-            ViewBag.TeacherId = new SelectList(db.Staffs, "StaffId", "Name", routine.TeacherId);
-            return View(routine);
+            ViewBag.CourseId = new SelectList(db.Courses, "CourseId", "Name", model.CourseId);
+            ViewBag.SemesterId = new SelectList(db.Semesters, "SemesterId", "Year", model.SemesterId);
+            ViewBag.TeacherId = new SelectList(db.Staffs, "StaffId", "Name", model.TeacherId);
+            return View(model);
         }
 
         // POST: Routines/Edit/5
@@ -100,8 +113,10 @@ namespace attendance_beta2.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(routine).State = EntityState.Modified;
-                db.SaveChanges();
+                //db.Entry(routine).State = EntityState.Modified;
+                //db.SaveChanges();
+                String sql = "Update Routines set CourseId='" + routine.CourseId + "', Day='" + routine.DayName+ "', StartTime='" + routine.StartTime + "', EndTime='" + routine.EndTime + "', Room='" + routine.Room + "', ClassTYpe='" + routine.ClassType + "', TeacherId='" + routine.TeacherId+ "', SemesterId='" + routine.SemesterId + "' where RoutineId= " + routine.RoutineId;
+                db.Edit(sql);
                 return RedirectToAction("Index");
             }
             ViewBag.CourseId = new SelectList(db.Courses, "CourseId", "Name", routine.CourseId);
@@ -117,12 +132,17 @@ namespace attendance_beta2.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Routine routine = db.Routines.Find(id);
-            if (routine == null)
+            //Routine routine = db.Routines.Find(id);
+            String sql = "SELECT R.*, C.Name AS CourseName, T.Name AS TeacherName, SE.Level AS SemesterLevel FROM Routines R JOIN Courses C ON R.CourseId = C.CourseId JOIN Staffs T ON R.TeacherId = T.StaffId JOIN Semesters SE ON R.SemesterId = SE.SemesterId" +
+                " WHERE RoutineId = " + id;
+            db.List(sql);
+            var dt = db.List(sql);
+            var model = new Routine().List(dt).FirstOrDefault();
+            if (model == null)
             {
                 return HttpNotFound();
             }
-            return View(routine);
+            return View(model);
         }
 
         // POST: Routines/Delete/5
@@ -130,9 +150,11 @@ namespace attendance_beta2.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Routine routine = db.Routines.Find(id);
-            db.Routines.Remove(routine);
-            db.SaveChanges();
+            //Routine routine = db.Routines.Find(id);
+            //db.Routines.Remove(routine);
+            //db.SaveChanges();
+            String sql = "DELETE FROM Routines where RoutineId = " + id;
+            db.Delete(sql);
             return RedirectToAction("Index");
         }
 

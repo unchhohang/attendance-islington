@@ -174,6 +174,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AttendancesController.cs" />
     <Compile Include="Controllers\CoursesController.cs" />
     <Compile Include="Controllers\FacultiesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -209,6 +210,22 @@
     <Compile Include="Migrations\201904240342312_a5.cs" />
     <Compile Include="Migrations\201904240342312_a5.Designer.cs">
       <DependentUpon>201904240342312_a5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904241403097_a6.cs" />
+    <Compile Include="Migrations\201904241403097_a6.Designer.cs">
+      <DependentUpon>201904241403097_a6.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904241413110_m.cs" />
+    <Compile Include="Migrations\201904241413110_m.Designer.cs">
+      <DependentUpon>201904241413110_m.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904241708045_a7.cs" />
+    <Compile Include="Migrations\201904241708045_a7.Designer.cs">
+      <DependentUpon>201904241708045_a7.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904260918146_a8.cs" />
+    <Compile Include="Migrations\201904260918146_a8.Designer.cs">
+      <DependentUpon>201904260918146_a8.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -384,6 +401,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201904240342312_a5.resx">
       <DependentUpon>201904240342312_a5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904241403097_a6.resx">
+      <DependentUpon>201904241403097_a6.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904241413110_m.resx">
+      <DependentUpon>201904241413110_m.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904241708045_a7.resx">
+      <DependentUpon>201904241708045_a7.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904260918146_a8.resx">
+      <DependentUpon>201904260918146_a8.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
