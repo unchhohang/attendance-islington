@@ -21,7 +21,7 @@ namespace attendance_beta2.Models
                 staff.Name = dt.Rows[i]["Name"].ToString();
                 staff.Contact = dt.Rows[i]["Contact"].ToString();
                 staff.Address = dt.Rows[i]["Address"].ToString();
-                staff.Email = dt.Rows[i]["Address"].ToString();
+                staff.Email = dt.Rows[i]["Email"].ToString();
                 
                 list.Add(staff);
             }

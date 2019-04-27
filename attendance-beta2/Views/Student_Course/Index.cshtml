@@ -6,34 +6,46 @@
 
 <h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.CourseName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.StudentName)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.CourseName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.StudentName)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.StudentCourseId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.StudentCourseId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.StudentCourseId })
-        </td>
-    </tr>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="form-group">
+        <div class="col-md-4">
+            @Html.DropDownList("CourseId", null, htmlAttributes: new { @class = "form-control" })
+        </div>
+    </div>
 }
 
-</table>
+
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CourseName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StudentName)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CourseName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StudentName)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.StudentCourseId }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.StudentCourseId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.StudentCourseId })
+                </td>
+            </tr>
+        }
+
+    </table>

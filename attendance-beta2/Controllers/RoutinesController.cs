@@ -166,5 +166,38 @@ namespace attendance_beta2.Controllers
             }
             base.Dispose(disposing);
         }
+
+        public ActionResult InRoutineModuleTeacherReport()
+        {
+            string sql = "SELECT R.*, C.Name AS CourseName, T.Name AS TeacherName, SE.Level AS SemesterLevel FROM Routines R JOIN Courses C ON R.CourseId = C.CourseId JOIN Staffs T ON R.TeacherId = T.StaffId JOIN Semesters SE ON R.SemesterId = SE.SemesterId Where R.courseId < 0";
+            db.List(sql);
+            var dt = db.List(sql);
+            var model = new Routine().List(dt);
+            ViewBag.CourseId = new SelectList(db.Courses, "CourseId", "Name");
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult InRoutineModuleTeacherReport(Routine routine)
+        {
+            string sql = "SELECT R.*, C.Name AS CourseName, T.Name AS TeacherName, SE.Level AS SemesterLevel FROM Routines R JOIN Courses C ON R.CourseId = C.CourseId JOIN Staffs T ON R.TeacherId = T.StaffId JOIN Semesters SE ON R.SemesterId = SE.SemesterId Where R.CourseId = " + routine.CourseId;
+            db.List(sql);
+            var dt = db.List(sql);
+            var model = new Routine().List(dt);
+            ViewBag.CourseId = new SelectList(db.Courses, "CourseId", "Name");
+            return View(model);
+        }
+
+        public ActionResult TeacherWorkingHoursReport()
+        {
+            string sql = "SELECT T.Name AS TeacherName, MAX(T.Email) AS Email, MAX(C.Name) AS CourseName,MAX(SE.Level) AS SemesterLevel, SUM(DATEDIFF(hour, Convert(DateTime,R.StartTime, 5), Convert(DateTime,R.EndTime,5))) AS WorkingHour FROM Routines R JOIN Courses C ON R.CourseId = C.CourseId JOIN Staffs T ON R.TeacherId = T.StaffId JOIN Semesters SE ON R.SemesterId = SE.SemesterId GROUP BY T.Name";
+            db.List(sql);
+            var dt = db.List(sql);
+            var model = new Routine().getWorkingHours(dt);
+            
+            return View(model);
+        }
+
     }
 }

@@ -179,6 +179,7 @@
     <Compile Include="Controllers\FacultiesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="Controllers\RoutinesController.cs" />
     <Compile Include="Controllers\SemestersController.cs" />
     <Compile Include="Controllers\StaffsController.cs" />
@@ -226,6 +227,14 @@
     <Compile Include="Migrations\201904260918146_a8.cs" />
     <Compile Include="Migrations\201904260918146_a8.Designer.cs">
       <DependentUpon>201904260918146_a8.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904261922422_a9.cs" />
+    <Compile Include="Migrations\201904261922422_a9.Designer.cs">
+      <DependentUpon>201904261922422_a9.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904270254186_a10.cs" />
+    <Compile Include="Migrations\201904270254186_a10.Designer.cs">
+      <DependentUpon>201904270254186_a10.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -356,16 +365,17 @@
     <Content Include="Views\Students1\Details.cshtml" />
     <Content Include="Views\Students1\Edit.cshtml" />
     <Content Include="Views\Students1\Index.cshtml" />
-    <Content Include="Views\Student_Course1\Create.cshtml" />
-    <Content Include="Views\Student_Course1\Delete.cshtml" />
-    <Content Include="Views\Student_Course1\Details.cshtml" />
-    <Content Include="Views\Student_Course1\Edit.cshtml" />
-    <Content Include="Views\Student_Course1\Index.cshtml" />
     <Content Include="Views\Staffs\Create.cshtml" />
     <Content Include="Views\Staffs\Delete.cshtml" />
     <Content Include="Views\Staffs\Details.cshtml" />
     <Content Include="Views\Staffs\Edit.cshtml" />
     <Content Include="Views\Staffs\Index.cshtml" />
+    <Content Include="Views\Report\dailyReport.cshtml" />
+    <Content Include="Views\Report\weeklyReport.cshtml" />
+    <Content Include="Views\Report\monthlyReport.cshtml" />
+    <Content Include="Views\Student_Course\InStudentCourseEnrolReport.cshtml" />
+    <Content Include="Views\Routines\InRoutineModuleTeacherReport.cshtml" />
+    <Content Include="Views\Routines\TeacherWorkingHoursReport.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -413,6 +423,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201904260918146_a8.resx">
       <DependentUpon>201904260918146_a8.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904261922422_a9.resx">
+      <DependentUpon>201904261922422_a9.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904270254186_a10.resx">
+      <DependentUpon>201904270254186_a10.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

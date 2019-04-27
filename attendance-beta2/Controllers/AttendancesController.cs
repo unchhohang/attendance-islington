@@ -71,6 +71,10 @@ namespace attendance_beta2.Controllers
                 {
                     item.RoutineId = attendance.FirstOrDefault().RoutineId;
                     db.Attendances.Add(item);
+                    //item.punchTime = DateTime.Now.ToUniversalTime();
+                    String sql = "INSERT INTO Attendances(StudentId, RoutineId, punchtime, Present) " +
+                        "values('" + item.StudentId+ "','" + item.RoutineId+ "','" + DateTime.Now+ "','" + item.Attended+ "')";
+                    db.Create(sql);
 
                 }
                 db.SaveChanges();

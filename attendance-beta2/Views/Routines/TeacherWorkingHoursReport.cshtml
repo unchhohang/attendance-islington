@@ -1,0 +1,54 @@
+﻿@model IEnumerable<attendance_beta2.Models.Routine>
+@{
+    ViewBag.Title = "TeacherWorkingHoursReport";
+}
+
+<h2>TeacherWorkingHoursReport</h2>
+
+<table class="table" style="margin-top:50px">
+    <tr>
+        <th>
+            Teacher Name
+        </th>
+        <th>
+            Email
+        </th>
+        <th>
+            CourseName
+        </th>
+        <th>
+            SemesterLevel
+        </th>
+        <th>
+            WoringHour
+        </th>
+        
+
+
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TeacherName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CourseName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SemesterLevel)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.WorkingHours)
+        </td>
+
+    </tr>
+    }
+
+</table>
+

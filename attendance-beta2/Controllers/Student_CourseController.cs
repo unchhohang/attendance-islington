@@ -19,12 +19,15 @@ namespace attendance_beta2.Controllers
         {
             //var student_Course = db.Student_Course.Include(s => s.Courses).Include(s => s.Students);
             //return View(student_Course.ToList());
+
             String sql = "SELECT sc.*, c.Name, s.StudentName FROM Student_Course sc JOIN Courses c ON sc.CourseId = c.CourseId JOIN Students s ON sc.StudentId = s.StudentId";
             db.List(sql);
             var dt = db.List(sql);
             var model = new Student_Course().List(dt);
             return View(model);
         }
+
+      
 
         // GET: Student_Course/Details/5
         public ActionResult Details(int? id)
@@ -50,6 +53,7 @@ namespace attendance_beta2.Controllers
         {
             ViewBag.CourseId = new SelectList(db.Courses, "CourseId", "Name");
             ViewBag.StudentId = new SelectList(db.Students, "StudentId", "StudentName");
+
             return View();
         }
 
@@ -116,6 +120,8 @@ namespace attendance_beta2.Controllers
             return View(student_Course);
         }
 
+
+
         // GET: Student_Course/Delete/5
         public ActionResult Delete(int? id)
         {
@@ -146,6 +152,27 @@ namespace attendance_beta2.Controllers
             String sql = "DELETE FROM Student_Course where StudentCourseId = " + id;
             db.Delete(sql);
             return RedirectToAction("Index");
+        }
+
+        public ActionResult InStudentCourseEnrolReport()
+        {
+            string sql = "SELECT sc.*, c.Name, s.StudentName FROM Student_Course sc JOIN Courses c ON sc.CourseId = c.CourseId JOIN Students s ON sc.StudentId = s.StudentId WHERE sc.courseId < 0";
+            db.List(sql);
+            var dt = db.List(sql);
+            var model = new Student_Course().List(dt);
+            ViewBag.CourseId = new SelectList(db.Courses, "CourseId", "Name");
+            return View(model);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult InStudentCourseEnrolReport(Course course)
+        {
+            string sql = "SELECT sc.*, c.Name, s.StudentName FROM Student_Course sc JOIN Courses c ON sc.CourseId = c.CourseId JOIN Students s ON sc.StudentId = s.StudentId WHERE sc.courseId = " + course.CourseId;
+            db.List(sql);
+            var dt = db.List(sql);
+            var model = new Student_Course().List(dt);
+            ViewBag.CourseId = new SelectList(db.Courses, "CourseId", "Name");
+            return View(model);
         }
 
         protected override void Dispose(bool disposing)

@@ -27,6 +27,7 @@ namespace attendance_beta2.Models
                 r.ClassType = dt.Rows[i]["ClassType"].ToString();
                 r.TeacherId = Convert.ToInt32(dt.Rows[i]["TeacherId"].ToString());
                 r.SemesterId = Convert.ToInt32(dt.Rows[i]["SemesterId"].ToString());
+                
                 if (dt.Columns.Contains("CourseName"))
                 {
                     r.CourseName = dt.Rows[i]["CourseName"].ToString();
@@ -45,6 +46,38 @@ namespace attendance_beta2.Models
             return list;
 
         }
+
+        public List<Routine> getWorkingHours(DataTable dt)
+        {
+
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                Routine r = new Routine();
+                r.TeacherName = dt.Rows[i]["TeacherName"].ToString();
+                r.Email = dt.Rows[i]["Email"].ToString();
+                r.CourseName = dt.Rows[i]["CourseName"].ToString();
+                r.SemesterLevel = dt.Rows[i]["TeacherName"].ToString();
+                r.WorkingHours = dt.Rows[i]["WorkingHour"].ToString();
+
+                if (dt.Columns.Contains("CourseName"))
+                {
+                    r.CourseName = dt.Rows[i]["CourseName"].ToString();
+                }
+                if (dt.Columns.Contains("TeacherName"))
+                {
+                    r.TeacherName = dt.Rows[i]["TeacherName"].ToString();
+                }
+                if (dt.Columns.Contains("SemesterLevel"))
+                {
+                    r.SemesterLevel = dt.Rows[i]["SemesterLevel"].ToString();
+
+                }
+                list.Add(r);
+            }
+            return list;
+
+        }
+
 
         [Key]
         public int RoutineId { get; set; }
@@ -80,6 +113,10 @@ namespace attendance_beta2.Models
         public string SemesterLevel { get; set; }
         [NotMapped]
         public string DayName { get; set; }
+        [NotMapped]
+        public String WorkingHours { get; set; }
+        [NotMapped]
+        public string Email { get; set; }
 
 
 

@@ -33,7 +33,10 @@ namespace attendance_beta2.Models
         [Required]
         public int RoutineId { get; set; }
         [Required]
-        public Status Attended { get; set; }
+        public string Present { get; set; }
+        
+        [Required]
+        public DateTime punchTime { get; set; }
 
         [ForeignKey("StudentId")]
         public virtual Student Students { get; set; }
@@ -43,7 +46,9 @@ namespace attendance_beta2.Models
 
         [NotMapped]
         public String StudentName { get; set; }
-        
+        [NotMapped]
+        public Status Attended { get; set; }
+
         [NotMapped]
         public String CourseName { get; set; }
         [NotMapped]
