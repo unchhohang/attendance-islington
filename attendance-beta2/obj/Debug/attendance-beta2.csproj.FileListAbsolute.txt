@@ -347,11 +347,14 @@ C:\Users\Unchhohang\source\repos\attendance-islington\attendance-beta2\obj\Debug
 C:\Users\Unchhohang\source\repos\attendance-islington\attendance-beta2\obj\Debug\attendance_beta2.Migrations.m.resources
 C:\Users\Unchhohang\source\repos\attendance-islington\attendance-beta2\obj\Debug\attendance_beta2.Migrations.a7.resources
 C:\Users\Unchhohang\source\repos\attendance-islington\attendance-beta2\obj\Debug\attendance_beta2.Migrations.a8.resources
+C:\Users\Unchhohang\source\repos\attendance-islington\attendance-beta2\obj\Debug\attendance_beta2.Migrations.a9.resources
+C:\Users\Unchhohang\source\repos\attendance-islington\attendance-beta2\obj\Debug\attendance_beta2.Migrations.a10.resources
+C:\Users\Unchhohang\source\repos\attendance-islington\attendance-beta2\obj\Debug\attendance_beta2.Migrations.a11.resources
 C:\Users\Unchhohang\source\repos\attendance-islington\attendance-beta2\obj\Debug\attendance-beta2.csproj.GenerateResource.cache
 C:\Users\Unchhohang\source\repos\attendance-islington\attendance-beta2\obj\Debug\attendance-beta2.csproj.CoreCompileInputs.cache
 C:\Users\Unchhohang\source\repos\attendance-islington\attendance-beta2\obj\Debug\attendance-beta2.csproj.CopyComplete
 C:\Users\Unchhohang\source\repos\attendance-islington\attendance-beta2\obj\Debug\attendance-beta2.dll
 C:\Users\Unchhohang\source\repos\attendance-islington\attendance-beta2\obj\Debug\attendance-beta2.pdb
-C:\Users\Unchhohang\source\repos\attendance-islington\attendance-beta2\obj\Debug\attendance_beta2.Migrations.a9.resources
-C:\Users\Unchhohang\source\repos\attendance-islington\attendance-beta2\obj\Debug\attendance_beta2.Migrations.a10.resources
+C:\Users\Unchhohang\source\repos\attendance-islington\attendance-beta2\obj\Debug\attendance_beta2.Migrations.a12.resources
 C:\Users\Unchhohang\source\repos\attendance-islington\attendance-beta2\obj\Debug\attendance-beta2.csprojAssemblyReference.cache
+C:\Users\Unchhohang\source\repos\attendance-islington\attendance-beta2\obj\Debug\attendance_beta2.Migrations.a13.resources

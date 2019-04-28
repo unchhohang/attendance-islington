@@ -18,21 +18,17 @@ namespace attendance_beta2.Controllers
         // GET: Attendances
         public ActionResult Index()
         {
-            var attendances = db.Attendances.Include(a => a.Routines).Include(a => a.Students);
-
-
-
-
-
-            ViewBag.CourseId = new SelectList(db.Courses, "CourseId", "Name");
-            List<Staff> staffs = new List<Staff>();
-            ViewBag.StaffId = new SelectList(staffs, "StaffId", "Name");
-            List<Semester> sems = new List<Semester>();
-            ViewBag.SemesterId = new SelectList(sems, "SemesterId", "Level");
+            //var attendances = db.Attendances.Include(a => a.Routines).Include(a => a.Students);
+            String sql = "SELECT A.*, S.StudentName from Attendances A JOIN Students S" +
+                " ON S.StudentId = A.StudentId";
+            db.List(sql);
+            var dt = db.List(sql);
+            var model = new Attendance().List(dt);
+            return View(model);
 
 
             //List<SelectList> items = new List<SelectList>();
-            return View(attendances.ToList());
+            //return View(attendances.ToList());
         }
 
         // GET: Attendances/Details/5
@@ -65,25 +61,23 @@ namespace attendance_beta2.Controllers
         // [ValidateAntiForgeryToken]
         public ActionResult Create(List<Attendance> attendance)
         {
-            if (ModelState.IsValid)
-            {
+            
                 foreach (var item in attendance)
                 {
-                    item.RoutineId = attendance.FirstOrDefault().RoutineId;
-                    db.Attendances.Add(item);
-                    //item.punchTime = DateTime.Now.ToUniversalTime();
-                    String sql = "INSERT INTO Attendances(StudentId, RoutineId, punchtime, Present) " +
-                        "values('" + item.StudentId+ "','" + item.RoutineId+ "','" + DateTime.Now+ "','" + item.Attended+ "')";
-                    db.Create(sql);
+                item.RoutineId = attendance.FirstOrDefault().RoutineId;
+                //db.Attendances.Add(item);
+                item.punchTime = DateTime.Now.ToUniversalTime();
+                String sql = "INSERT INTO Attendances(StudentId, RoutineId, punchtime, Present) " +
+                    "values('" + item.StudentId + "','" + item.RoutineId + "','" + DateTime.Now + "','" + item.Attended + "')";
+                db.Create(sql);
 
-                }
+            }
                 db.SaveChanges();
                 return RedirectToAction("Index");
-            }
+            
+            
 
-            ViewBag.RoutineId = new SelectList(db.Routines, "RoutineId", "Room", attendance.FirstOrDefault().RoutineId);
-            ViewBag.StudentId = new SelectList(db.Students, "StudentId", "StudentName", attendance.FirstOrDefault().StudentId);
-            return View(attendance);
+           
         }
 
         // GET: Attendances/Edit/5
@@ -219,10 +213,25 @@ namespace attendance_beta2.Controllers
                 var dt = db.List(sql);
                 var attendances = new Attendance().List(dt);
 
-                return View("Index", attendances);
+                return View("AttendanceInterface", attendances);
             }
             var attendance = new List<Attendance>();
-            return View("Index", attendance);
+            return View("AttendanceInterface", attendance);
+        }
+
+        public ActionResult AttendanceInterface() {
+            string sql = "select * from Students s inner join Student_Course sc on sc.StudentId=s.StudentId";
+            db.List(sql);
+            var dt = db.List(sql);
+            var model = new Attendance().List(dt);
+
+            ViewBag.CourseId = new SelectList(db.Courses, "CourseId", "Name");
+            List<Staff> staffs = new List<Staff>();
+            ViewBag.StaffId = new SelectList(staffs, "StaffId", "Name");
+            List<Semester> sems = new List<Semester>();
+            ViewBag.SemesterId = new SelectList(sems, "SemesterId", "Level");
+            
+            return View(model);
         }
 
 

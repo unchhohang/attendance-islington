@@ -236,6 +236,18 @@
     <Compile Include="Migrations\201904270254186_a10.Designer.cs">
       <DependentUpon>201904270254186_a10.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201904271523177_a11.cs" />
+    <Compile Include="Migrations\201904271523177_a11.Designer.cs">
+      <DependentUpon>201904271523177_a11.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904271636300_a12.cs" />
+    <Compile Include="Migrations\201904271636300_a12.Designer.cs">
+      <DependentUpon>201904271636300_a12.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904271824017_a13.cs" />
+    <Compile Include="Migrations\201904271824017_a13.Designer.cs">
+      <DependentUpon>201904271824017_a13.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationUserRoles.cs" />
@@ -244,6 +256,7 @@
     <Compile Include="Models\Faculty.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Report.cs" />
     <Compile Include="Models\Routine.cs" />
     <Compile Include="Models\Semester.cs" />
     <Compile Include="Models\Staff.cs" />
@@ -376,6 +389,7 @@
     <Content Include="Views\Student_Course\InStudentCourseEnrolReport.cshtml" />
     <Content Include="Views\Routines\InRoutineModuleTeacherReport.cshtml" />
     <Content Include="Views\Routines\TeacherWorkingHoursReport.cshtml" />
+    <Content Include="Views\Attendances\AttendanceInterface.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -429,6 +443,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201904270254186_a10.resx">
       <DependentUpon>201904270254186_a10.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904271523177_a11.resx">
+      <DependentUpon>201904271523177_a11.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904271636300_a12.resx">
+      <DependentUpon>201904271636300_a12.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904271824017_a13.resx">
+      <DependentUpon>201904271824017_a13.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

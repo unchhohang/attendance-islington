@@ -18,6 +18,13 @@ namespace attendance_beta2.Models
             for (int i = 0; i < dt.Rows.Count; i++)
             {
                 Attendance at = new Attendance();
+                //at.AttendanceId = Convert.ToInt32(dt.Rows[i]["AttendanceId"].ToString());
+                //at.StudentId = Convert.ToInt32(dt.Rows[i]["StudentId"].ToString());
+                //at.StudentName = dt.Rows[i]["StudentName"].ToString();
+                //at.RoutineId = Convert.ToInt32(dt.Rows[i]["RoutineId"].ToString());
+                //at.punchTime = DateTime.Parse(dt.Rows[i]["RoutineId"].ToString());
+                //at.Present = Convert.ToInt32(dt.Rows[i]["Presesnt"].ToString());
+
                 at.StudentId = Convert.ToInt32(dt.Rows[i]["StudentId"].ToString());
                 at.StudentName = dt.Rows[i]["StudentName"].ToString();
 
@@ -35,7 +42,7 @@ namespace attendance_beta2.Models
         [Required]
         public string Present { get; set; }
         
-        [Required]
+        
         public DateTime punchTime { get; set; }
 
         [ForeignKey("StudentId")]
@@ -61,8 +68,8 @@ namespace attendance_beta2.Models
     
     public enum Status
     {
-        Present,
-        Absent,
-        Late
+        Present =1,
+        Absent = 0,
+        Late = 2
     }
 }
