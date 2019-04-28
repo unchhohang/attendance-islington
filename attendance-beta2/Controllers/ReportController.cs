@@ -25,9 +25,10 @@ namespace attendance_beta2.Controllers
         }
         //Post:Report
         [HttpPost]
-        public ActionResult DailyReport(String reportType, String GivenDate)
+        public ActionResult DailyReport(string reportType, string GivenDate)
         {
-            string sql = "SELECT A.*, convert(date, GETDATE()) As punchDate, S.StudentName FROM Attendances A JOIN Students S ON S.StudentId = A.StudentId WHERE convert(date, GETDATE()) = " + "'GivenData'";
+            
+            string sql = "SELECT A.*, S.StudentName FROM Attendances A JOIN Students S ON S.StudentId = A.StudentId where A.punchTime >= '" + GivenDate + " 00:00:000" + "' AND A.punchTime < '" + GivenDate + " 23:00:000" +"'";
             db.List(sql);
             var dt = db.List(sql);
             var model = new Report().GetReport(dt);
