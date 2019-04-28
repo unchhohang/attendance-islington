@@ -9,7 +9,7 @@ namespace attendance_beta2.Models
 {
     public class Report
     {
-        List<Report> report = new List<Report>();
+        public List<Report> report = new List<Report>();
         public List<Report> GetReport(DataTable dt)
         {
             for (int i = 0; i < dt.Rows.Count; i++)
@@ -20,7 +20,8 @@ namespace attendance_beta2.Models
                 re.RoutineId = Convert.ToInt32(dt.Rows[i]["RoutineId"]);
                 re.punchTime= DateTime.Parse(dt.Rows[i]["punchTime"].ToString());
                 re.StudentName = dt.Rows[i]["StudentName"].ToString();
-
+                
+                re.Present = dt.Rows[i]["Present"].ToString();
                 report.Add(re);
             }
             return report;
@@ -34,6 +35,8 @@ namespace attendance_beta2.Models
         [NotMapped]
         public string Present { get; set; }
         public string StudentName { get; set; }
+        [NotMapped]
+        public DateTime CompareDate { get; set; }
 
     }
 }

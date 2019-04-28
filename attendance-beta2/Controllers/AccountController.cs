@@ -12,7 +12,7 @@ using attendance_beta2.Models;
 
 namespace attendance_beta2.Controllers
 {
-    [Authorize]
+    [Authorize (Roles = "Admin , StudentService")]
     public class AccountController : Controller
     {
         private ApplicationSignInManager _signInManager;

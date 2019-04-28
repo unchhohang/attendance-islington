@@ -10,7 +10,7 @@ using attendance_beta2.Models;
 
 namespace attendance_beta2.Controllers
 {
-    //[Authorize ]
+    //[Authorize (Roles = "Admin , StudentService , Teacher") ]
     public class AttendancesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

@@ -20,15 +20,19 @@ namespace attendance_beta2.Controllers
             var dt = db.List(sql);
             var model = new Report().GetReport(dt);
             
-            //ViewBag.Date = new SelectList(db.Attendances, );
-            return View();
+            ViewBag.Date = new SelectList(db.Attendances, "AttendanceId", "punchTime");
+            return View(model);
         }
         //Post:Report
-        public ActionResult DailyReport(Attendance attendance)
+        [HttpPost]
+        public ActionResult DailyReport(String reportType, String GivenDate)
         {
-            string sql = "SELECT A.*, S.StudentName FROM Attendances A JOIN Students S ON S.StudentId = A.StudentId " +
-                "Whhere A.puchTime = " + attendance.punchTime;
-            return View();
+            string sql = "SELECT A.*, convert(date, GETDATE()) As punchDate, S.StudentName FROM Attendances A JOIN Students S ON S.StudentId = A.StudentId WHERE convert(date, GETDATE()) = " + "'GivenData'";
+            db.List(sql);
+            var dt = db.List(sql);
+            var model = new Report().GetReport(dt);
+            return View(model);
+            
         }
 
         public ActionResult weeklyReport()

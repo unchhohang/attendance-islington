@@ -14,6 +14,8 @@ namespace attendance_beta2.Controllers
     [Authorize]
     public class ManageController : Controller
     {
+        ApplicationDbContext dbCon = new ApplicationDbContext();
+
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
@@ -337,12 +339,22 @@ namespace attendance_beta2.Controllers
         public async Task<ActionResult> AddUserToRole()
         {
             ApplicationUserRolesViewModel vm = new ApplicationUserRolesViewModel();
-            ApplicationDbContext dbCon = new ApplicationDbContext();
             var users = await dbCon.Users.ToListAsync();
             var roles = await dbCon.Roles.ToListAsync();
             ViewBag.UserId = new SelectList(users, "Id", "UserName");
             ViewBag.RoleId = new SelectList(roles, "Id", "Name");
             return View(vm);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> AddUserToRole(ApplicationUserRolesViewModel model)
+        {
+            var role = dbCon.Roles.Find(model.RoleId);
+            if (role != null)
+            {
+                await UserManager.AddToRoleAsync(model.UserId, role.Name);
+            }
+            return RedirectToAction("AddUserToRole");
         }
 
         #region Helpers
