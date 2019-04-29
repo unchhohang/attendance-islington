@@ -58,14 +58,37 @@ namespace attendance_beta2.Controllers
             return View();
         }
 
-        public ActionResult weeklyReport()
+        public ActionResult IndvidualReport()
         {
+            string sql = "SELECT A.*, S.StudentName FROM Attendances A JOIN Students S ON S.StudentId = A.StudentId ";
+            db.List(sql);
+            var dt = db.List(sql);
+            var model = new Report().GetReport(dt);
 
-            return View();
+            ViewBag.StudentId = new SelectList(db.Students, "StudentId", "StudentName");
+            return View(model);
         }
-
-        public ActionResult monthlyReport()
+        [HttpPost]
+        public ActionResult IndvidualReport(string reportType, string GivenDate, string StudentName)
         {
+            if (reportType == "Weekly")
+            {
+                string sql = "SELECT A.*, S.StudentName FROM Attendances A JOIN Students S ON S.StudentId = A.StudentId where DATEPART(week, A.punchTime) = DATEPART(week, '" + GivenDate + "')" +
+                    "AND DATEPART(year, A.punchTime) = DATEPART(year, '" + GivenDate + "') AND S.StudentName = '" + StudentName + "' " ;
+                db.List(sql);
+                var dt = db.List(sql);
+                var model = new Report().GetReport(dt);
+                return View(model);
+            }
+            else if (reportType == "Monthly")
+            {
+                string sql = "SELECT A.*, S.StudentName FROM Attendances A JOIN Students S ON S.StudentId = A.StudentId where DATEPART(month, A.punchTime) = DATEPART(month, '" + GivenDate + "')" +
+                    "AND DATEPART(year, A.punchTime) = DATEPART(year, '" + GivenDate + "') AND S.StudentName = '" + StudentName + "' ";
+                db.List(sql);
+                var dt = db.List(sql);
+                var model = new Report().GetReport(dt);
+                return View(model);
+            }
 
             return View();
         }

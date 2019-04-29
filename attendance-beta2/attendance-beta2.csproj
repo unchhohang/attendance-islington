@@ -2150,6 +2150,7 @@
     <Content Include="Views\Routines\InRoutineModuleTeacherReport.cshtml" />
     <Content Include="Views\Routines\TeacherWorkingHoursReport.cshtml" />
     <Content Include="Views\Attendances\AttendanceInterface.cshtml" />
+    <Content Include="Views\Report\IndvidualReport.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

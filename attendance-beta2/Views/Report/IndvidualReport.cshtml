@@ -1,0 +1,89 @@
+﻿@model IEnumerable<attendance_beta2.Models.Report>
+@{
+    ViewBag.Title = "IndvidualReport";
+}
+
+<h2>IndvidualReport</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.Label("Report Type", htmlAttributes: new { @class = "control-label col-md-2" })
+
+    <div class="form-group col-md-10">
+
+        <select class="form-control" name="reportType">
+            <option value="Monthly">Monthly</option>
+            <option value="Weekly">Weekly</option>
+        </select>
+    </div>
+    <div class="form-group">
+        @Html.Label("Enter Date", htmlAttributes: new { @class = "control-label col-md-2" })
+
+        <div class="col-md-10">
+            @Html.Editor("GivenDate", new { htmlAttributes = new { @class = "form-control" } })
+            <br />
+            <br />
+        </div>
+        <div class="col-md-10">
+            @Html.Editor("StudentName", new { htmlAttributes = new { @class = "form-control" } })
+            <br />
+            <br />
+        </div>
+
+
+    </div>
+    <br />
+    <br />
+    <br />
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-2">
+            <input type="submit" value="Apply Filter" class="btn btn-primary" />
+        </div>
+    </div>
+
+}
+
+
+@*<input type="hidden" name="[0].RoutineId" value="@ViewBag.RoutineId" />*@
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.StudentName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.punchTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Present)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.StudentName)
+            </td>
+            <td>
+
+                @Html.DisplayFor(modelItem => item.punchTime)
+            </td>
+            <td>
+
+                @Html.DisplayFor(modelItem => item.Present)
+            </td>
+
+        </tr>
+    }
+
+</table>
+
+
+
+
+
+
+
+
